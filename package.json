@@ -1,0 +1,30 @@
+{
+  "name": "http-api-assignment",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.13.2",
+    "npm": "8.4.1"
+  },
+  "description": "IGME: 430, API Assignment 1",
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Tests complete\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unjer6/http-api-assignment.git"
+  },
+  "author": "Katelyn Soriano",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/unjer6/http-api-assignment/issues"
+  },
+  "homepage": "https://github.com/unjer6/http-api-assignment#readme",
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4"
+  }
+}

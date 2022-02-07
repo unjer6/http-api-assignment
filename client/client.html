@@ -6,6 +6,47 @@
   
   <script>
 
+    let content;
+
+    const sendFetchRequest = async (name, url, accept) => {
+      const options = {
+        method: 'GET',
+        headers: {'Accept': accept},
+      }
+
+      const response = await fetch(url, options);
+      const resText = await response.text();
+      const contentType = response.headers.get("Content-Type");
+
+      let message = "No message given.";
+      if (contentType === "text/xml"){
+        let parsedResponse = new window.DOMParser().parseFromString(resText, 'text/xml');
+        message = parsedResponse.querySelector('message').textContent || message;
+      }
+      else if (contentType === 'application/json') {
+        let parsedResponse = JSON.parse(resText);
+        message = parsedResponse.message || message;
+      }
+
+      content.innerHTML = `
+        <h1>${name}</h1>
+        <p>Message: ${message}</p>
+      `;
+
+      console.log(resText);
+    }
+
+    const init = () => {
+      content = document.querySelector("#content");
+
+      const page = document.querySelector("#page");
+      const type = document.querySelector("#type");
+
+      document.querySelector("#send").onclick = () => { sendFetchRequest(page.options[page.selectedIndex].textContent, page.value, type.value); };
+    }
+
+    window.onload = init;
+
   </script>
 </head>
 <body>
